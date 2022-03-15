@@ -7,6 +7,25 @@ terraform {
   }
 }
 
+resource "azurecaf_name" "container_registry" {
+  name          = var.application_name
+  resource_type = "azurerm_container_registry"
+  suffixes      = [var.environment]
+}
+
+resource "azurerm_container_registry" "container-registry" {
+  name                = azurecaf_name.container_registry.result
+  resource_group_name = var.resource_group
+  location            = var.location
+  admin_enabled       = true
+  sku                 = "Basic"
+
+  tags = {
+    "environment"      = var.environment
+    "application-name" = var.application_name
+  }
+}
+
 resource "azurecaf_name" "app_service_plan" {
   name          = var.application_name
   resource_type = "azurerm_app_service_plan"
@@ -53,7 +72,7 @@ resource "azurerm_app_service" "application" {
   }
 
   site_config {
-    linux_fx_version          = "JAVA|11-java11"
+    linux_fx_version          = "DOCKER|${azurerm_container_registry.container-registry.name}.azurecr.io/${var.application_name}/${var.application_name}:latest"
     always_on                 = false
     use_32_bit_worker_process = true
     ftps_state                = "FtpsOnly"
@@ -61,8 +80,16 @@ resource "azurerm_app_service" "application" {
 
   app_settings = {
     "WEBSITES_ENABLE_APP_SERVICE_STORAGE" = "false"
+    "DOCKER_REGISTRY_SERVER_URL"          = "https://${azurerm_container_registry.container-registry.name}.azurecr.io"
+    "DOCKER_REGISTRY_SERVER_USERNAME"     = azurerm_container_registry.container-registry.admin_username
+    "DOCKER_REGISTRY_SERVER_PASSWORD"     = azurerm_container_registry.container-registry.admin_password
+    "WEBSITES_PORT"                       = "8080"
 
     # These are app specific environment variables
     "SPRING_PROFILES_ACTIVE" = "prod,azure"
+
+    "SPRING_DATASOURCE_URL"      = "jdbc:sqlserver://${var.database_url}"
+    "SPRING_DATASOURCE_USERNAME" = var.database_username
+    "SPRING_DATASOURCE_PASSWORD" = var.database_password
   }
 }
