@@ -30,7 +30,7 @@ jobs:
     needs: [manage-infrastructure, build]
     runs-on: ubuntu-20.04
     steps:
-      - name: Deploy a Java application to Azure Spring Cloud
-        uses: microsoft/nubesgen-actions/gitops-deploy-to-spring-cloud-java@v0.4.4
+      - name: Deploy a Java application to Azure App Service
+        uses: microsoft/nubesgen-actions/gitops-deploy-to-app-service-java@v0.4.4
         with:
           azure_credentials: ${{ secrets.AZURE_CREDENTIALS }}
