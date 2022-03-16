@@ -86,10 +86,9 @@ resource "azurerm_app_service" "application" {
     "WEBSITES_PORT"                       = "8080"
 
     # These are app specific environment variables
-    "SPRING_PROFILES_ACTIVE" = "prod,azure"
 
-    "SPRING_DATASOURCE_URL"      = "jdbc:sqlserver://${var.database_url}"
-    "SPRING_DATASOURCE_USERNAME" = var.database_username
-    "SPRING_DATASOURCE_PASSWORD" = var.database_password
+    "DATABASE_URL"      = var.database_url
+    "DATABASE_USERNAME" = var.database_username
+    "DATABASE_PASSWORD" = var.database_password
   }
 }
