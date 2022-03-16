@@ -46,7 +46,7 @@ spec:
               done
       containers:
         - name: store-app
-          image: gcr.io/jhipster7/store
+          image: andrewcarterhughes/store
           env:
             - name: SPRING_PROFILES_ACTIVE
               value: prod

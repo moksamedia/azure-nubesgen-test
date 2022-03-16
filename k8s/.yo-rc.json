@@ -1,18 +1,18 @@
 {
   "generator-jhipster": {
     "appsFolders": ["blog", "gateway", "store"],
-    "directoryPath": "../",
     "clusteredDbApps": ["store"],
-    "serviceDiscoveryType": "eureka",
-    "jwtSecretKey": "MGYyOWI2ZGQxMjZmNmVkNmZlNjNlN2E0ZjQyOGNmYjViMGJlNzRjODJlZTlkOTkzM2E5YjEzOTA2NDE3ZmNmZDRkNGMzMDI3ZGE2ZDA5ZGY4YTMzOGYwZDg4OGRhODc1NDgzOA==",
-    "dockerRepositoryName": "mraible",
+    "directoryPath": "../",
     "dockerPushCommand": "docker push",
+    "dockerRepositoryName": "andrewcarterhughes",
+    "ingressDomain": "",
+    "istio": false,
+    "jwtSecretKey": "MGYyOWI2ZGQxMjZmNmVkNmZlNjNlN2E0ZjQyOGNmYjViMGJlNzRjODJlZTlkOTkzM2E5YjEzOTA2NDE3ZmNmZDRkNGMzMDI3ZGE2ZDA5ZGY4YTMzOGYwZDg4OGRhODc1NDgzOA==",
     "kubernetesNamespace": "demo",
     "kubernetesServiceType": "LoadBalancer",
-    "kubernetesUseDynamicStorage": true,
     "kubernetesStorageClassName": "",
-    "ingressDomain": "",
+    "kubernetesUseDynamicStorage": true,
     "monitoring": "no",
-    "istio": false
+    "serviceDiscoveryType": "eureka"
   }
 }

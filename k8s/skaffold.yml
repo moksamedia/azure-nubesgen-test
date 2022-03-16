@@ -2,13 +2,13 @@ apiVersion: skaffold/v1
 kind: Config
 build:
   artifacts:
-    - image: mraible/blog
+    - image: andrewcarterhughes/blog
       context: ../blog
       jib: {}
-    - image: mraible/gateway
+    - image: andrewcarterhughes/gateway
       context: ../gateway
       jib: {}
-    - image: mraible/store
+    - image: andrewcarterhughes/store
       context: ../store
       jib: {}
   tagPolicy:

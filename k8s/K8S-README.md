@@ -5,12 +5,12 @@
 You will need to push your image to a registry. If you have not done so, use the following commands to tag and push the images:
 
 ```
-$ docker image tag blog mraible/blog
-$ docker push mraible/blog
-$ docker image tag gateway mraible/gateway
-$ docker push mraible/gateway
-$ docker image tag store mraible/store
-$ docker push mraible/store
+$ docker image tag blog andrewcarterhughes/blog
+$ docker push andrewcarterhughes/blog
+$ docker image tag gateway andrewcarterhughes/gateway
+$ docker push andrewcarterhughes/gateway
+$ docker image tag store andrewcarterhughes/store
+$ docker push andrewcarterhughes/store
 ```
 
 ## Deployment
@@ -54,7 +54,7 @@ $ kubectl scale deployment <app-name> --replicas <replica-count> -n demo
 The default way to update a running app in kubernetes, is to deploy a new image tag to your docker registry and then deploy it using
 
 ```
-$ kubectl set image deployment/<app-name>-app <app-name>=<new-image> -n demo
+$ kubectl set image deployment/<app-name>-app <app-name>=<new-image>  -n demo
 ```
 
 Using livenessProbes and readinessProbe allow you to tell Kubernetes about the state of your applications, in order to ensure availablity of your services. You will need minimum 2 replicas for every application deployment if you want to have zero-downtime deployed.

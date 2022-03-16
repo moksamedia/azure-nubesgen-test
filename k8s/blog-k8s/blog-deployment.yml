@@ -46,7 +46,7 @@ spec:
               done
       containers:
         - name: blog-app
-          image: gcr.io/jhipster7/blog
+          image: andrewcarterhughes/blog
           env:
             - name: SPRING_PROFILES_ACTIVE
               value: prod

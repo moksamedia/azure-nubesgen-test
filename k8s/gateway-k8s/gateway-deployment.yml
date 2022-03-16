@@ -46,7 +46,7 @@ spec:
               done
       containers:
         - name: gateway-app
-          image: gcr.io/jhipster7/gateway
+          image: andrewcarterhughes/gateway
           env:
             - name: SPRING_PROFILES_ACTIVE
               value: prod
